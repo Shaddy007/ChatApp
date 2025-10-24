@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-server
+  namespace: shaddy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ostad-server
+  template:
+    metadata:
+      labels:
+        app: ostad-server
+    spec:
+      containers:
+      - name: ostad-server
+        image: ostad-server:1.0
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: mongodb://root:example@mongo:27017/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ostad-server
+  namespace: shaddy
+spec:
+  type: ClusterIP
+  selector:
+    app: ostad-server
+  ports:
+  - port: 5000
+    targetPort: 5000
