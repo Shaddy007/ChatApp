@@ -1,73 +1,71 @@
-# Ostad Project
+# Ostad-Docker Chat Application
 
-This repository contains two separate projects:
-
-- **Ostadserver** — An Express.js backend server
-- **OstadUI** — A React frontend application built with Vite
+## Overview
+**Ostad-Docker** is a full-stack, real-time chat application that demonstrates a multi-component system using **Node.js**, **React (Vite)**, **MongoDB**, and **Mongo Express**, all deployed in **Kubernetes**.  
+This project showcases containerization with Docker and orchestration with Kubernetes, making it a complete example for learning modern DevOps practices.
 
 ---
+
+## Features
+
+- Real-time chat messaging between multiple users.
+- Persistent storage using MongoDB.
+- Admin dashboard via Mongo Express.
+- Frontend developed with Vite for fast development.
+- Backend with Node.js and Express API.
+- Kubernetes manifests for Deployment, Services, and Ingress.
+
+---
+
+## Project Architecture
+
++----------------+ +----------------+ +-------------+
+| | HTTP | | TCP | |
+| Frontend |------>| Backend |------>| MongoDB |
+| (Vite/React) | | (Node.js API) | | Database |
+| ostad-ui | | ostad-server | | mongo |
++----------------+ +----------------+ +-------------+
+|
+| HTTP
+v
++----------------+
+| Mongo Express |
+| Admin Panel |
+| mongo-express |
++----------------+
+
+
+- **ostad-ui**: Serves the web application and communicates with the backend API.  
+- **ostad-server**: Handles API requests and connects to MongoDB for storing and retrieving chat messages.  
+- **mongo**: MongoDB database storing all chat data.  
+- **mongo-express**: Optional admin UI for database management.
+
+---
+
+## Folder Structure
+
+Ostad-Docker/
+├── Dockerfile-server # Backend Dockerfile
+├── Dockerfile-UI # Frontend Dockerfile
+├── OstadServer/ # Node.js backend code
+├── OstadUI/ # Frontend React/Vite code
+├── YAMLs/ # Kubernetes manifests
+├── ostad.yaml # Optional project config
+└── readme.md # Project description
+
 
 ## Prerequisites
 
-Make sure you have the following installed on your system:
-
-- [Node.js](https://nodejs.org/) (version 16 or above recommended)
-- npm (comes with Node.js) or yarn
-
----
-
-## Getting Started
-
-### 1. Run Ostadserver (Express Backend)
-
-```bash
-cd Ostadserver
-npm install
-npm start
-```
-
-This will start the Express server, usually on `http://localhost:5000` (or your configured port).
-
----
-
-### 2. Run OstadUI (React + Vite Frontend)
-
-```bash
-cd OstadUI
-npm install
-npm run dev
-```
-
-This will start the Vite development server, usually on `http://localhost:3000` (or your configured port).
-
----
+- Linux (Oracle Linux 10 tested)
+- Docker
+- Minikube (for local Kubernetes cluster)
+- kubectl (Kubernetes CLI)
+- Git
 
 ## Notes
 
-- Make sure your backend server (`Ostadserver`) is running before starting the frontend (`OstadUI`) if your frontend depends on any API from the backend.
-- You can customize ports by editing the `package.json` scripts or configuration files (`vite.config.js` for frontend and `server.js` or equivalent for backend).
-- For production builds:
+All Kubernetes resources are inside the YAMLs/ folder.
 
-  - Backend: Use `npm run build` if applicable or deploy as needed.
-  - Frontend: Run `npm run build` inside `OstadUI` to create a production build.
+You can change namespace name if required.
 
----
-
-## Useful Commands
-
-| Command         | Description                      | Location    |
-| --------------- | -------------------------------- | ----------- |
-| `npm install`   | Install dependencies             | Both        |
-| `npm start`     | Start Express server             | Ostadserver |
-| `npm run dev`   | Start Vite development server    | OstadUI     |
-| `npm run build` | Build production frontend bundle | OstadUI     |
-
----
-
-## Contact
-
-For questions or support, please contact \[Your Name] or open an issue in this repository.
-
----
-
-Happy coding! 🚀
+This project demonstrates Kubernetes Deployments, Services, and Ingress configuration for multi-component apps.
