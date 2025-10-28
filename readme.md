@@ -25,7 +25,7 @@ The application is fully containerized using **Docker** and orchestrated with **
 
 ## Project Architecture
 
-```text
+
 +----------------+       +----------------+       +-------------+
 |   Frontend     | HTTP  |    Backend     | TCP   |   MongoDB   |
 |  (Vite/React)  |------>|  (Node.js API) |------>|   Database  |
@@ -48,6 +48,7 @@ The application is fully containerized using **Docker** and orchestrated with **
 
 ---
 
+
 ## Folder Structure
 
 
@@ -60,6 +61,7 @@ Ostad-Docker/
 ├── ostad.yaml              # Optional project config
 └── README.md               # Project description
 
+---
 
 ## Prerequisites
 
