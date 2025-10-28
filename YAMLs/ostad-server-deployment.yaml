@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-server
+  namespace: shaddy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ostad-server
+  template:
+    metadata:
+      labels:
+        app: ostad-server
+    spec:
+      containers:
+        - name: ostad-server
+          image: <your-backend-image>
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mongo-service:27017"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ostad-server-service
+  namespace: shaddy
+spec:
+  selector:
+    app: ostad-server
+  ports:
+    - port: 5000
+      targetPort: 5000
+
