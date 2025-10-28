@@ -23,8 +23,8 @@ The application is fully containerized using **Docker** and orchestrated with **
 
 ---
 
+```text
 ## Project Architecture
-
 
 +----------------+       +----------------+       +-------------+
 |   Frontend     | HTTP  |    Backend     | TCP   |   MongoDB   |
@@ -48,9 +48,7 @@ The application is fully containerized using **Docker** and orchestrated with **
 
 ---
 
-
 ## Folder Structure
-
 
 Ostad-Docker/
 ├── Dockerfile-server       # Backend Dockerfile
